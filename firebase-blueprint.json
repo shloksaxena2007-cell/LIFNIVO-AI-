@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and sync settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "lastSyncedAt": { "type": "string" }
+      },
+      "required": ["uid"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "User task with recurrence, priority, and area",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "completed": { "type": "boolean" },
+        "dueDate": { "type": "string" },
+        "time": { "type": "string" },
+        "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+        "area": { "type": "string" },
+        "isFocus": { "type": "boolean" },
+        "recurring": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "completed", "area"]
+    },
+    "CalendarEvent": {
+      "title": "Calendar Event",
+      "description": "Calendar event or meeting with date, time, and recurrence",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "isAllDay": { "type": "boolean" },
+        "area": { "type": "string" },
+        "location": { "type": "string" },
+        "notes": { "type": "string" },
+        "recurring": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "date"]
+    },
+    "LifeArea": {
+      "title": "Life Area",
+      "description": "Contextual life area",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "emoji": { "type": "string" },
+        "description": { "type": "string" },
+        "isCustom": { "type": "boolean" }
+      },
+      "required": ["id", "userId", "name", "emoji"]
+    },
+    "PersonalMemory": {
+      "title": "Personal Memory",
+      "description": "User saved memory, note, or parameter",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "area": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "content"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile document"
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "User tasks"
+    },
+    "/users/{userId}/events/{eventId}": {
+      "schema": "CalendarEvent",
+      "description": "User calendar events"
+    },
+    "/users/{userId}/areas/{areaId}": {
+      "schema": "LifeArea",
+      "description": "User custom life areas"
+    },
+    "/users/{userId}/memories/{memoryId}": {
+      "schema": "PersonalMemory",
+      "description": "User personal memories"
+    }
+  }
+}

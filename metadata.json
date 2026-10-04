@@ -1,0 +1,6 @@
+{
+  "name": "LIFEDESK AI",
+  "description": "An AI-powered personal life organizer that brings tasks, calendar, notes, goals, reminders, plans, and important information into one place.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
